@@ -11,6 +11,12 @@ import TextBlot, { escapeText } from '../blots/text.js';
 import CodeBlock, { CodeBlockContainer } from '../formats/code.js';
 import { traverse } from './clipboard.js';
 
+declare global {
+  interface Window {
+    hljs: any;
+  }
+}
+
 const TokenAttributor = new ClassAttributor('code-token', 'hljs', {
   scope: Scope.INLINE,
 });
