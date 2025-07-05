@@ -60,6 +60,7 @@
   ],
   "scripts": {
     "build": "npx tsx scripts/build.ts",
+    "dev": "vite -c vite.config.common.ts",
     "lint": "run-s lint:*",
     "lint:eslint": "eslint .",
     "lint:tsc": "tsc --noEmit --skipLibCheck",

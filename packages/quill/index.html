@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Quill Playground</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="./src/assets/core.styl" rel="stylesheet" type="text/css">
+    <link href="./src/assets/bubble.styl" rel="stylesheet" type="text/css">
+    <link href="./src/assets/snow.styl" rel="stylesheet" type="text/css">
+    <style>
+        .inputs {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="inputs">
+        <select id="theme-selector">
+            <option value="snow">Snow</option>
+            <option value="bubble">Bubble</option>
+        </select>
+    </div>
+    <div id="quill-editor"></div>
+    <script type="module" src="/src/main.ts"></script>
+    <script type="module">
+        import Quill from './src/main.js';
+
+        const editor = document.getElementById('quill-editor');
+        let quill = null
+
+        const initEditor = (theme) => {
+          theme ??= 'snow';
+
+          quill = new Quill(editor, {
+            theme,
+          })
+        }
+        const destroyEditor = () => {
+          if (quill) {
+            quill = null;
+            editor.innerHTML = '';
+            editor.className = '';
+
+            const toolbar = document.querySelector('.ql-toolbar');
+            toolbar?.remove()
+          }
+        }
+
+        // Theme selector functionality
+        const themeSelector = document.getElementById('theme-selector');
+        themeSelector.addEventListener('change', (event) => {
+            const selectedTheme = event.target.value;
+            destroyEditor();
+            initEditor(selectedTheme);
+        });
+
+        // Initialize the editor with the default theme
+        initEditor('snow');
+    </script>
+</body>
+</html>
