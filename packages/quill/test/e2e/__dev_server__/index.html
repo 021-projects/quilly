@@ -9,11 +9,13 @@
     />
     <title>Quill E2E Tests</title>
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-    <link href="/quill.core.css" rel="stylesheet" />
-    <link href="/quill.snow.css" rel="stylesheet" />
+    <link href="@/assets/core.styl" rel="stylesheet" />
+    <link href="@/assets/snow.styl" rel="stylesheet" />
   </head>
 
   <body>
+    <script type="module" src="@/main.ts"></script>
+
     <div id="root">
       <div id="standalone-container">
         <div id="toolbar-container">
@@ -62,7 +64,8 @@
           </span>
         </div>
         <div id="editor" style="height: 350px"></div>
-        <script>
+        <script type="module">
+          import Quill from '@/main.ts';
           window.quill = new Quill(document.getElementById('editor'), {
             modules: { syntax: true, toolbar: '#toolbar-container' },
             placeholder: 'Compose an epic...',
