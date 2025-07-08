@@ -1,10 +1,13 @@
 themeName = 'bubble'
-activeColor = #fff
-borderColor = #777
-backgroundColor = #444
-inactiveColor = #ccc
-shadowColor = #ddd
-textColor = #fff
+
+.ql-bubble
+  --ql-color-active: oklch(1 0 0)
+  --ql-color-border: oklch(0.5693 0 0)
+  --ql-color-surface: oklch(1 0 0)
+  --ql-color-inactive: oklch(0.8452 0 0)
+  --ql-color-shadow: oklch(0.8975 0 0)
+  --ql-color-text: oklch(1 0 0)
+  --ql-color-tooltip-bg: oklch(0.3867 0 0)
 
 @import './core'
 @import './base'
@@ -15,11 +18,11 @@ textColor = #fff
     position: relative
     white-space: nowrap
   a:not(.ql-close)::before
-    background-color: #444
+    background-color: var(--ql-color-tooltip-bg)
     border-radius: 15px
     top: -5px
     font-size: 12px
-    color: #fff
+    color: oklch(1 0 0)
     content: attr(href)
     font-weight: normal
     overflow: hidden
@@ -27,7 +30,7 @@ textColor = #fff
     text-decoration: none
     z-index: 1
   a:not(.ql-close)::after
-    border-top: 6px solid #444
+    border-top: 6px solid var(--ql-color-tooltip-bg)
     border-left: 6px solid transparent
     border-right: 6px solid transparent
     top: 0

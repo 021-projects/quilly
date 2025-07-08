@@ -1,10 +1,13 @@
 themeName = 'snow'
-activeColor = #06c
-borderColor = #ccc
-backgroundColor = #fff
-inactiveColor = #444
-shadowColor = #ddd
-textColor = #444
+
+.ql-snow
+  --ql-color-active: oklch(0.522 0.1771 255.83)
+  --ql-color-border: oklch(0.8452 0 0)
+  --ql-color-surface: oklch(1 0 0)
+  --ql-color-inactive: oklch(0.3867 0 0)
+  --ql-color-shadow: oklch(0.8975 0 0)
+  --ql-color-text: oklch(0.3867 0 0)
+  --ql-color-tooltip-bg: oklch(1 0 0)
 
 @import './core'
 @import './base'
@@ -12,7 +15,7 @@ textColor = #444
 
 .ql-snow
   a
-    color: activeColor
+    color: var(--ql-color-active)
 
 .ql-container.ql-snow
-  border: 1px solid borderColor
+  border: 1px solid var(--ql-color-border)

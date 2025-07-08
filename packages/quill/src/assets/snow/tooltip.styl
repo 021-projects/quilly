@@ -1,20 +1,21 @@
-tooltipMargin = 8px
+:root
+  --ql-m-snow-tooltip: 8px
 
 .ql-snow
   .ql-tooltip
     background-color: #fff
-    border: 1px solid borderColor
-    box-shadow: 0px 0px 5px shadowColor
-    color: textColor
+    border: 1px solid var(--ql-color-border)
+    box-shadow: 0px 0px 5px var(--ql-color-shadow)
+    color: var(--ql-color-text)
     padding: 5px 12px
     white-space: nowrap
     &::before
       content: "Visit URL:"
       line-height: 26px
-      margin-right: tooltipMargin
+      margin-right: var(--ql-m-snow-tooltip)
     input[type=text]
       display: none
-      border: 1px solid borderColor
+      border: 1px solid var(--ql-color-border)
       font-size: 13px
       height: 26px
       margin: 0px
@@ -27,13 +28,13 @@ tooltipMargin = 8px
       text-overflow: ellipsis
       vertical-align: top
     a.ql-action::after
-      border-right: 1px solid borderColor
+      border-right: 1px solid var(--ql-color-border)
       content: 'Edit'
-      margin-left: tooltipMargin*2
-      padding-right: tooltipMargin
+      margin-left: calc(var(--ql-m-snow-tooltip) * 2)
+      padding-right: var(--ql-m-snow-tooltip)
     a.ql-remove::before
       content: 'Remove'
-      margin-left: tooltipMargin
+      margin-left: var(--ql-m-snow-tooltip)
     a
       line-height: 26px
   .ql-tooltip.ql-editing
@@ -46,8 +47,8 @@ tooltipMargin = 8px
       content: 'Save'
       padding-right: 0px
   .ql-tooltip[data-mode=link]::before
-    content: "Enter link:"
+    content: var(--ql-phrase-enter-link) ':'
   .ql-tooltip[data-mode=formula]::before
-    content: "Enter formula:"
+    content: var(--ql-phrase-enter-formula) ':'
   .ql-tooltip[data-mode=video]::before
-    content: "Enter video:"
+    content: var(--ql-phrase-enter-video) ':'
