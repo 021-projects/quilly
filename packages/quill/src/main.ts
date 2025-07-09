@@ -32,6 +32,7 @@ import Table from './modules/table.js';
 import Toolbar from './modules/toolbar.js';
 import BubbleTheme from './themes/bubble.js';
 import SnowTheme from './themes/snow.js';
+import TinyTheme from './themes/tiny.js';
 import Icons from './ui/icons.js';
 import Picker from './ui/picker.js';
 import IconPicker from './ui/icon-picker.js';
@@ -93,6 +94,7 @@ Quill.register(
 
     'themes/bubble': BubbleTheme,
     'themes/snow': SnowTheme,
+    'themes/tiny': TinyTheme,
 
     'ui/icons': Icons,
     'ui/picker': Picker,

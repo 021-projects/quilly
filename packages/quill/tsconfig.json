@@ -15,7 +15,12 @@
     "moduleResolution": "bundler",
     "strictNullChecks": true,
     "noImplicitAny": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
+
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   },
   "include": ["src/**/*", "test/**/*"]
 }

@@ -1,0 +1,39 @@
+.ql-tiny
+  .ql-toolbar
+    display: flex
+    button
+      width: var(--ql-size-control)
+      height: var(--ql-size-control)
+      padding: 0
+      border-radius: var(--ql-radius-control)
+      display: flex
+      align-items: center
+      justify-content: center
+      &:hover:not(.ql-active),
+      &:focus:not(.ql-active),
+      &:active:not(.ql-active)
+        background: var(--ql-color-light-secondary-text)
+        .ql-fill,
+        .ql-fill.ql-stroke
+          fill: var(--ql-color-inactive)
+        .ql-stroke
+          stroke: var(--ql-color-inactive)
+      &.ql-active
+        background: var(--ql-color-active-bg)
+      svg
+        float: none
+        height: 80%
+    .ql-formats
+      display: flex
+      justify-content: space-between
+      flex: 0 0 auto
+      margin: 0
+      padding: 7px
+      gap: 4px
+
+  .ql-color-picker
+    svg
+      margin: 1px
+    .ql-picker-item.ql-selected,
+    .ql-picker-item:hover
+      border-color: var(--ql-color-active)

@@ -1,0 +1,63 @@
+themeName = 'tiny'
+
+.ql-container.ql-tiny,
+.ql-container.ql-tiny .ql-toolbar
+  --ql-color-active: oklch(1 0 0)
+  --ql-color-active-bg: var(--ql-color-accent)
+  --ql-color-border: oklch(0.5693 0 0)
+  --ql-color-surface: oklch(1 0 0)
+  --ql-color-inactive: oklch(0.8452 0 0)
+  --ql-color-shadow: oklch(0.8975 0 0)
+  --ql-color-text: oklch(0 0 0)
+  --ql-color-tooltip-bg: oklch(0.3867 0 0)
+  --ql-color-accent: oklch(0.6267 0.1594 288.96)
+  --ql-color-light-secondary-text: oklch(0.738 0 0 / 8%)
+
+  --ql-radius-control: 8px
+  --ql-size-control: 30px
+
+  --ql-radius-tooltip: 10px
+  --ql-shadow-tooltip: 0 2px 2px #00000024, 0 3px 1px -2px #0000001f, 0 1px 5px #0003
+
+@import './fonts/quillico/Quillico.styl'
+@import './core'
+@import './base'
+@import './tiny/*'
+
+.ql-container.ql-tiny
+  .ql-editor
+    padding: 0
+
+.ql-container.ql-tiny:not(.ql-disabled)
+  a:not(.ql-close)
+    position: relative
+    white-space: nowrap
+  a:not(.ql-close)::before
+    background-color: var(--ql-color-tooltip-bg)
+    border-radius: 15px
+    top: -5px
+    font-size: 12px
+    color: oklch(1 0 0)
+    content: attr(href)
+    font-weight: normal
+    overflow: hidden
+    padding: 5px 15px
+    text-decoration: none
+    z-index: 1
+  a:not(.ql-close)::after
+    border-top: 6px solid var(--ql-color-tooltip-bg)
+    border-left: 6px solid transparent
+    border-right: 6px solid transparent
+    top: 0
+    content: " "
+    height: 0
+    width: 0
+  a:not(.ql-close)::before, a:not(.ql-close)::after
+    left: 0
+    margin-left: 50%
+    position: absolute
+    transform: translate(-50%, -100%)
+    transition: visibility 0s ease 200ms
+    visibility: hidden
+  a:not(.ql-close):hover::before, a:not(.ql-close):hover::after
+    visibility: visible

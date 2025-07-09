@@ -1,0 +1,13 @@
+.ql-container.ql-tiny
+  .ql-picker
+    display: flex
+    align-items: center
+    &.ql-expanded
+      --ql-color-border: var(--ql-color-inactive)
+    .ql-picker-label
+      height: unset
+  .ql-picker-options
+    box-shadow: var(--ql-shadow-tooltip)
+    border-radius: var(--ql-radius-tooltip)
+    width: max-content
+    max-width: "min(calc(100vh - 20px), 250px)" % null

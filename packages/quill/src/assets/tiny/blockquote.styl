@@ -1,0 +1,29 @@
+.ql-tiny
+  --ql-color-code-text: var(--ql-color-text)
+  .ql-editor blockquote,
+  .ql-editor .ql-code-block-container
+    display: block
+    width: fit-content
+    position: relative
+    background: "oklch(from var(--ql-color-accent) l c h / 15%)" % null
+    border-left: 3px solid var(--ql-color-accent)
+    border-radius: 4px 6px 6px 4px
+    padding: 2px 24px 2px 8px
+    line-height: 21px
+    margin: 2px 0
+    margin-inline-end: auto
+    &:after
+      font-family: Quillico
+      content: var(--ql-icon-top-right)
+      position: absolute
+      top: .125rem
+      inset-inline-end: .1875rem
+      color: var(--ql-color-accent)
+      line-height: 1
+      font-size: 84.571428%
+  blockquote
+    &:after
+      --ql-icon-top-right: "\e901"
+  .ql-code-block-container
+    &:after
+      --ql-icon-top-right: "\e900"
