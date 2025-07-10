@@ -12,6 +12,7 @@ const defaultInput = {
   'quill.core': srcPath('core.ts'),
   'quill.core.css': srcPath('assets/core.styl'),
   'quill.bubble.css': srcPath('assets/bubble.styl'),
+  'quill.tiny.css': srcPath('assets/tiny.styl'),
   'quill.snow.css': srcPath('assets/snow.styl'),
 };
 
@@ -30,6 +31,7 @@ export default defineConfig({
   ],
   build: {
     assetsDir: 'vendor',
+    sourcemap: true,
     rollupOptions: {
       preserveEntrySignatures: 'exports-only',
       input: new EsmInputBuilder(defaultInput)
