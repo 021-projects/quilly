@@ -87,12 +87,30 @@ class TinyTooltip extends BaseTooltip {
   }
 
   position(reference: Bounds) {
+    const savedRange = this.quill.selection.savedRange;
+    const bounds = this.quill.selection.getBounds(
+      savedRange.index,
+      savedRange.length,
+    );
+
     const left =
-      reference.left + reference.width / 2 - this.root.offsetWidth / 2;
+      (bounds?.left ?? reference.left) +
+      reference.width / 2 -
+      this.root.offsetWidth / 2;
 
     // Calculate `top` to place the tooltip above the reference
-    const top =
-      reference.top - this.root.offsetHeight + this.quill.root.scrollTop;
+    // If selection bounds are available, position tooltip fixed
+    // To allow it to place in overflow hidden containers
+    let top: number;
+    if (bounds !== null) {
+      top = bounds.top - this.root.offsetHeight;
+
+      this.root.classList.add('ql-fixed');
+    } else {
+      top = reference.top - this.root.offsetHeight + this.quill.root.scrollTop;
+
+      this.root.classList.remove('ql-fixed');
+    }
 
     // Default placement is above, so add 'ql-flip'
     this.root.style.left = `${left}px`;
