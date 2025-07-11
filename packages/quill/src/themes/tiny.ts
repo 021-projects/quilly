@@ -8,6 +8,9 @@ import Emitter from '@/core/emitter.js';
 import { BaseTooltip } from './base.js';
 import getElementPagePosition from '@/helpers/dom/getElementPagePosition';
 import { Range } from '@/core/quill.js';
+import isOutsideViewport from '@/helpers/dom/isOutsideViewport';
+import isOnViewportBottom from '@/helpers/dom/isOnViewportBottom';
+import closestTopInsideViewport from '@/helpers/dom/closestTopInsideViewport';
 
 class TinyTooltip extends BaseTooltip {
   static TEMPLATE = [
@@ -59,6 +62,20 @@ class TinyTooltip extends BaseTooltip {
         }
       },
     );
+
+    // If the tooltip is fixed, we need to update its position on scroll and resize
+    const updateFixedPosition = () => {
+      if (!this.root.classList.contains('ql-fixed')) {
+        return;
+      }
+
+      const bounds = this.quill.getBounds(this.quill.selection.savedRange);
+      if (bounds !== null) {
+        this.position(bounds);
+      }
+    };
+    window.addEventListener('resize', updateFixedPosition, { passive: true });
+    window.addEventListener('scroll', updateFixedPosition, { passive: true });
   }
 
   listen() {
@@ -92,6 +109,7 @@ class TinyTooltip extends BaseTooltip {
       savedRange.index,
       savedRange.length,
     );
+    const containerBounds = this.boundsContainer.getBoundingClientRect();
 
     const left =
       (bounds?.left ?? reference.left) +
@@ -105,6 +123,15 @@ class TinyTooltip extends BaseTooltip {
     if (bounds !== null) {
       top = bounds.top - this.root.offsetHeight;
 
+      const topLimit =
+        containerBounds.top < 0
+          ? window.scrollY + containerBounds.top
+          : containerBounds.top;
+
+      if (top < topLimit) {
+        top = topLimit - this.root.offsetHeight;
+      }
+
       this.root.classList.add('ql-fixed');
     } else {
       top = reference.top - this.root.offsetHeight + this.quill.root.scrollTop;
@@ -117,7 +144,6 @@ class TinyTooltip extends BaseTooltip {
     this.root.style.top = `${top}px`;
     this.root.classList.add('ql-flip');
 
-    const containerBounds = this.boundsContainer.getBoundingClientRect();
     const rootBounds = this.root.getBoundingClientRect();
     let shift = 0;
 
@@ -130,11 +156,21 @@ class TinyTooltip extends BaseTooltip {
       this.root.style.left = `${left + shift}px`;
     }
 
-    // If not enough space above, place below and remove 'ql-flip'
-    if (getElementPagePosition(this.root).top < window.scrollY) {
-      const newTop = reference.bottom + this.quill.root.scrollTop;
-      this.root.style.top = `${newTop}px`;
-      this.root.classList.remove('ql-flip');
+    if (bounds !== null && isOutsideViewport(this.root)) {
+      const nearestTop = closestTopInsideViewport(this.root);
+      // The tooltip is 10px above the selected text by default
+      // If the closest top is the top of the viewport, we add padding so that the tooltip does not press against the borders
+      // If the closest top is the bottom of the viewport, we reduce them
+      const pagePadding = isOnViewportBottom(nearestTop + rootBounds.height)
+        ? 6
+        : 12;
+      this.root.style.top = `${nearestTop + pagePadding}px`;
+    } else if (getElementPagePosition(this.root).top < window.scrollY) {
+      // If not enough space above, place below and remove 'ql-flip'
+      top = reference.bottom + this.quill.root.scrollTop;
+
+      this.root.style.top = `${top}px`;
+      this.root.classList.remove('ql-fixed', 'ql-flip');
     }
 
     return shift;
