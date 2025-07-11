@@ -9,7 +9,7 @@ themeName = 'tiny'
   --ql-color-inactive: oklch(0.8452 0 0)
   --ql-color-shadow: oklch(0.8975 0 0)
   --ql-color-text: oklch(0 0 0)
-  --ql-color-tooltip-bg: oklch(0.3867 0 0)
+  --ql-color-tooltip-bg: oklch(0.2478 0 0)
   --ql-color-accent: oklch(0.6267 0.1594 288.96)
   --ql-color-light-secondary-text: "oklch(0.738 0 0 / 8%)" % null
   --ql-color-placeholder: var(--ql-color-inactive)
@@ -50,10 +50,10 @@ themeName = 'tiny'
       opacity: 0
 
 .ql-container.ql-tiny:not(.ql-disabled)
-  a:not(.ql-close)
+  a:not(.ql-btn-icon)
     position: relative
     white-space: nowrap
-  a:not(.ql-close)::before
+  a:not(.ql-btn-icon)::before
     background-color: var(--ql-color-tooltip-bg)
     border-radius: 15px
     top: -5px
@@ -65,7 +65,7 @@ themeName = 'tiny'
     padding: 5px 15px
     text-decoration: none
     z-index: 1
-  a:not(.ql-close)::after
+  a:not(.ql-btn-icon)::after
     border-top: 6px solid var(--ql-color-tooltip-bg)
     border-left: 6px solid transparent
     border-right: 6px solid transparent
@@ -73,12 +73,12 @@ themeName = 'tiny'
     content: " "
     height: 0
     width: 0
-  a:not(.ql-close)::before, a:not(.ql-close)::after
+  a:not(.ql-btn-icon)::before, a:not(.ql-btn-icon)::after
     left: 0
     margin-left: 50%
     position: absolute
     transform: translate(-50%, -100%)
     transition: visibility 0s ease 200ms
     visibility: hidden
-  a:not(.ql-close):hover::before, a:not(.ql-close):hover::after
+  a:not(.ql-btn-icon):hover::before, a:not(.ql-btn-icon):hover::after
     visibility: visible

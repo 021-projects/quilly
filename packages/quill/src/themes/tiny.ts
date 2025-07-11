@@ -15,8 +15,9 @@ import closestTopInsideViewport from '@/helpers/dom/closestTopInsideViewport';
 class TinyTooltip extends BaseTooltip {
   static TEMPLATE = [
     '<div class="ql-tooltip-editor">',
-    '<input type="text" data-formula="e=mc^2" data-link="https://quilljs.com" data-video="Embed URL">',
-    '<a class="ql-close"></a>',
+    '<a class="ql-btn-icon ql-close"></a>',
+    '<input type="text" data-formula="Enter formula..." data-link="Enter URL..." data-video="Embed URL...">',
+    '<a class="ql-btn-icon ql-apply"></a>',
     '</div>',
   ].join('');
 
@@ -80,9 +81,11 @@ class TinyTooltip extends BaseTooltip {
 
   listen() {
     super.listen();
-    // @ts-expect-error Fix me later
-    this.root.querySelector('.ql-close').addEventListener('click', () => {
+    this.root.querySelector('.ql-close')!.addEventListener('click', () => {
       this.root.classList.remove('ql-editing');
+    });
+    this.root.querySelector('.ql-apply')!.addEventListener('click', () => {
+      this.save();
     });
     this.quill.on(Emitter.events.SCROLL_OPTIMIZE, () => {
       // Let selection be restored by toolbar handlers before repositioning

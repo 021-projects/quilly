@@ -25,18 +25,28 @@
       font-size: 14px
       height: 100%
       outline: none
-      padding: 14px
-      padding-right: 35px
+      padding: 14px 45px
       position: absolute
       width: 100%
-    a
-      &:before
-        color: var(--ql-color-inactive)
-        content: "\00D7"
-        font-size: 26px
-      position: absolute
-      right: 0
-      height: 100%
+    .ql-btn-icon
       display: flex
       align-items: center
-      padding-right: 12px
+      position: absolute
+      height: 100%
+      padding: 0 10px
+      z-index: 10
+      &:before
+        font-size: 24px
+    .ql-close
+      left: 0
+      &:before
+        font-family: Quillico
+        color: var(--ql-color-inactive)
+        content: "\e902"
+    .ql-apply
+      right: 0
+      &:before
+        font-family: Quillico
+        font-size: 32px
+        color: var(--ql-color-accent)
+        content: "\e903"
