@@ -57,6 +57,12 @@ export interface QuillOptions {
    * @default null
    */
   formats?: string[] | null;
+
+  /**
+   * A function that can be used to render the tooltip body.
+   * @param template
+   */
+  tooltipBodyRenderer?: (template: string) => string;
 }
 
 /**
