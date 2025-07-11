@@ -120,7 +120,6 @@ class BubbleTheme extends BaseTheme {
   }
 
   extendToolbar(toolbar: Toolbar) {
-    // @ts-expect-error
     this.tooltip = new BubbleTooltip(this.quill, this.options.bounds);
     if (toolbar.container != null) {
       this.tooltip.root.appendChild<HTMLElement>(toolbar.container);

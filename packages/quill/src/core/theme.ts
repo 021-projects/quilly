@@ -6,6 +6,7 @@ import type { ToolbarProps } from '../modules/toolbar.js';
 import type Uploader from '../modules/uploader.js';
 
 export interface ThemeOptions {
+  bounds?: HTMLElement;
   modules: Record<string, unknown> & {
     toolbar?: null | ToolbarProps;
   };

@@ -188,7 +188,6 @@ class TinyTheme extends BubbleTheme {
   }
 
   override extendToolbar(toolbar: Toolbar) {
-    // @ts-expect-error
     this.tooltip = new TinyTooltip(this.quill, this.options.bounds);
     if (!toolbar.container) {
       return;
