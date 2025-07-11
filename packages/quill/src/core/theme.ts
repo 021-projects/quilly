@@ -10,6 +10,7 @@ export interface ThemeOptions {
   modules: Record<string, unknown> & {
     toolbar?: null | ToolbarProps;
   };
+  tooltipBodyRenderer?: (template: string) => string;
 }
 
 class Theme {
@@ -49,6 +50,14 @@ class Theme {
       this.options.modules[name] || {},
     );
     return this.modules[name];
+  }
+
+  renderTooltipBody(template: string) {
+    if (this.options.tooltipBodyRenderer) {
+      return this.options.tooltipBodyRenderer(template);
+    }
+
+    return template;
   }
 }
 

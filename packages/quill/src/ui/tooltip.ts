@@ -15,8 +15,11 @@ class Tooltip {
     this.quill = quill;
     this.boundsContainer = boundsContainer || document.body;
     this.root = quill.addContainer('ql-tooltip');
-    // @ts-expect-error
-    this.root.innerHTML = this.constructor.TEMPLATE;
+    // Todo: Tooltip rendering must be improved
+    this.root.innerHTML = this.quill.theme.renderTooltipBody(
+      // @ts-expect-error
+      this.constructor.TEMPLATE,
+    );
     if (isScrollable(this.quill.root)) {
       this.quill.root.addEventListener('scroll', () => {
         this.root.style.marginTop = `${-1 * this.quill.root.scrollTop}px`;
