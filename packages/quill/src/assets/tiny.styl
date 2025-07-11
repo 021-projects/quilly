@@ -20,6 +20,9 @@ themeName = 'tiny'
   --ql-radius-tooltip: 10px
   --ql-shadow-tooltip: 0 2px 2px #00000024, 0 3px 1px -2px #0000001f, 0 1px 5px #0003
 
+  --ql-reflect: 1
+  --ql-input-placeholder-transition: .15s ease-out
+
 @import './fonts/quillico/Quillico.styl'
 @import './core'
 @import './base'
@@ -29,7 +32,11 @@ themeName = 'tiny'
   font-size: 16px
   .ql-editor
     padding: 0
-    &.ql-blank::before
+    &.ql-blank
+      &:before
+        transform: translate(0)
+        opacity: 1
+    &:before
       color: var(--ql-color-placeholder)
       font-style: normal
       content: attr(data-placeholder)
@@ -38,6 +45,9 @@ themeName = 'tiny'
       right: unset
       pointer-events: none
       position: absolute
+      transform: translate(calc(1rem * var(--ql-reflect)))
+      transition: opacity var(--ql-input-placeholder-transition) .01s,transform var(--ql-input-placeholder-transition) .01s
+      opacity: 0
 
 .ql-container.ql-tiny:not(.ql-disabled)
   a:not(.ql-close)
