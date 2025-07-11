@@ -108,7 +108,6 @@ class SnowTheme extends BaseTheme {
       toolbar.container.classList.add('ql-snow');
       this.buildButtons(toolbar.container.querySelectorAll('button'), icons);
       this.buildPickers(toolbar.container.querySelectorAll('select'), icons);
-      // @ts-expect-error
       this.tooltip = new SnowTooltip(this.quill, this.options.bounds);
       if (toolbar.container.querySelector('.ql-link')) {
         this.quill.keyboard.addBinding(
