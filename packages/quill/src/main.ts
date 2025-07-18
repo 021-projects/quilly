@@ -1,5 +1,5 @@
 /**
- * This is entry point for UMD.
+ * This is entry point for ESM.
  */
 
 import Quill from './core.js';
@@ -30,14 +30,18 @@ import Video from './formats/video.js';
 import Syntax from './modules/syntax.js';
 import Table from './modules/table.js';
 import Toolbar from './modules/toolbar.js';
-import BubbleTheme from './themes/bubble.js';
-import SnowTheme from './themes/snow.js';
-import TinyTheme from './themes/tiny.js';
 import Icons from './ui/icons.js';
 import Picker from './ui/picker.js';
 import IconPicker from './ui/icon-picker.js';
 import ColorPicker from './ui/color-picker.js';
 import Tooltip from './ui/tooltip.js';
+import type {
+  Bounds,
+  DebugLevel,
+  EmitterSource,
+  ExpandedQuillOptions,
+  QuillOptions,
+} from './core.js';
 
 Quill.register(
   {
@@ -92,10 +96,6 @@ Quill.register(
     'modules/table': Table,
     'modules/toolbar': Toolbar,
 
-    'themes/bubble': BubbleTheme,
-    'themes/snow': SnowTheme,
-    'themes/tiny': TinyTheme,
-
     'ui/icons': Icons,
     'ui/picker': Picker,
     'ui/icon-picker': IconPicker,
@@ -104,5 +104,22 @@ Quill.register(
   },
   true,
 );
+
+export {
+  AttributeMap,
+  Delta,
+  Module,
+  Op,
+  OpIterator,
+  Parchment,
+  Range,
+} from './core.js';
+export type {
+  Bounds,
+  DebugLevel,
+  EmitterSource,
+  ExpandedQuillOptions,
+  QuillOptions,
+};
 
 export default Quill;
