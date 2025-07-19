@@ -199,6 +199,22 @@ class TinyTheme extends BubbleTheme {
     this.tooltip.root.appendChild<HTMLElement>(toolbar.container);
     this.buildButtons(toolbar.container.querySelectorAll('button'), icons);
     this.buildPickers(toolbar.container.querySelectorAll('select'), icons);
+
+    this.registerShortcuts();
+  }
+
+  registerShortcuts() {
+    const toolbarHandlers = this.modules.toolbar?.handlers || {};
+
+    if (toolbarHandlers.link) {
+      this.quill.keyboard.addBinding({
+        key: 'k',
+        shortKey: true,
+        handler: () => {
+          this.tooltip.edit('link');
+        },
+      });
+    }
   }
 }
 
